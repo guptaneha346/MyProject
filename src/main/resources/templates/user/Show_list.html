@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+    <title>User List</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #EDEDED;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${userList}">
+    <h2>User List</h2>
+
+    <table>
+        <tr>
+            <th>#ID</th>
+            <th>NAME</th>
+            <th>DEPARTMENT</th>
+            <th>NUMBER</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+        </tr>
+        <tr th:each="user : ${userList}">
+
+
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.department}"></td>
+            <td th:text="${user.number}"></td>
+
+
+            <td>
+                <div class="container">
+                    <span th:utext="${userForm}"></span>
+                    <a  th:href="@{/user/updateUser/{id} (id=${user.id})}">UPDATE</a>
+                </div>
+
+
+            </td>
+
+            <td>
+                <div class="container">
+                    <span th:utext="${userForm}"></span>
+                    <a  th:href="@{/user/deleteUser/{id} (id=${user.id})}">DELETE</a>
+                </div>
+
+            </td>
+
+
+
+
+        </tr>
+
+
+        <a class="btn btn-primary" th:href="@{/user/addUser/}" role="button" >Add New User</a>
+&nbsp;&nbsp; <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" >Upload Csv File</a>
+
+
+    </table>
+</div>
+</body>
+</html>

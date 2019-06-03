@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
+<head>
+    <title>User List</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #EDEDED;
+        }
+    </style>
+</head>
+<body>
+<div th:switch="${userList}">
+    <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI">
+
+
+    <h2>User List</h2>
+
+    <table>
+        <tr>
+            <th>#ID</th>
+            <th>NAME</th>
+            <th>DEPARTMENT</th>
+            <th>NUMBER</th>
+
+        </tr>
+        <tr th:each="user : ${userList}">
+
+
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.department}"></td>
+            <td th:text="${user.number}"></td>
+
+
+
+
+
+
+
+
+        </tr>
+
+
+    </table>
+</div>
+</body>
+</html>
