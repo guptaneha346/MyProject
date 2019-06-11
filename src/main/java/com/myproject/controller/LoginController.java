@@ -85,9 +85,18 @@ public class LoginController {
 
 }
 
+
+
     @GetMapping(value = "/search1")
     public  String search1(Model model, @RequestParam(defaultValue = "") String name){
         model.addAttribute("userList",userService.findByName(name));
+        return "user/Show_list";
+
+    }
+
+    @GetMapping(value = "/search2")
+    public  String search2(Model model, @RequestParam(defaultValue = "") String department){
+        model.addAttribute("userList",userService.findByDepartment(department));
         return "user/Show_list";
 
     }

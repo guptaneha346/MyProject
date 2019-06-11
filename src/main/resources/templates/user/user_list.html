@@ -1,59 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
+<html xmlns:spring="http://java.sun.com/xml/ns/javaee" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>User List</title>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 70%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #EDEDED;
-        }
-    </style>
+    <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
 </head>
+<div>
+<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI">
+</div>
 <body>
+
 <div th:switch="${userList}">
-    <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI">
+    <div class="container">
+        <h2>User List</h2>
+        <form action="/search" class="from-inline">
 
+            <input type="text" class="form-control" name="name" placeholder="search user">
+            <input type="submit" value="search" class="btn btn-primary">
+    </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+        <th scope="row">#ID</th>
+        <th scope="row">NAME</th>
+        <th scope="row">DEPARTMENT</th>
+        <th scope="row">NUMBER</th>
 
-    <h2>User List</h2>
-
-    <table>
-        <tr>
-            <th>#ID</th>
-            <th>NAME</th>
-            <th>DEPARTMENT</th>
-            <th>NUMBER</th>
-
-        </tr>
+        </thead>
+        <tbody>
         <tr th:each="user : ${userList}">
-
-
             <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.department}"></td>
             <td th:text="${user.number}"></td>
 
-
-
-
-
-
-
-
         </tr>
-
-
+        </tbody>
     </table>
+</div>
+
+
 </div>
 </body>
 </html>

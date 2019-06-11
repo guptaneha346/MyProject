@@ -1,14 +1,15 @@
 package com.myproject.controller;
 
+
 import com.myproject.Service.UserService;
 import com.myproject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+
 
     @RequestMapping(value="/list", method= RequestMethod.GET)
     public ModelAndView list() {
@@ -31,7 +34,6 @@ public class UserController {
         return model;
     }
 
-
     @RequestMapping(value="/addUser/", method=RequestMethod.GET)
     public ModelAndView addUser() {
         ModelAndView model = new ModelAndView();
@@ -43,18 +45,16 @@ public class UserController {
         return model;
     }
 
-    @RequestMapping(value="/uploadFile/", method=RequestMethod.GET)
+    @RequestMapping(value="/uploadUserFile/", method=RequestMethod.GET)
     public ModelAndView addUser1() {
         ModelAndView model = new ModelAndView();
 
         User user = new User();
         model.addObject("file", user);
-        model.setViewName("user/upload_form");
+        model.setViewName("user/upload_file");
 
         return model;
     }
-
-
 
     @RequestMapping(value="/updateUser/{id}", method=RequestMethod.GET)
     public ModelAndView editUser(@PathVariable long id) {
@@ -82,9 +82,24 @@ public class UserController {
 
         return new ModelAndView("redirect:/user/list");
     }
+    @GetMapping(value="/file")
+    public String home(Model model){
+        model.addAttribute("user",new User());
+        List<User> users=userService.getAllDetails();
+        model.addAttribute("users",users);
+        return "redirect:/user/list";
+    }
 
+    @PostMapping(value="/UploadFile/")
+    public  String uploadfile(@ModelAttribute User user, RedirectAttributes redirectAttributes){
+        boolean isFlag=userService.savDatafromuploadfile(user.getFile());
 
+        if(isFlag){
+            System.out.println("uploadfile");
+        }else{
+            System.out.println("try again");
+        }
 
-
-
+        return "redirect:/user/file";
+    }
 }

@@ -8,10 +8,39 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+    <style>
+        .button{
+           display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  margin-left:400px;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+    </style>
+
+
+
+
 </head>
 <body>
 <div class="container">
-    <!--/*@thymesVar id="user" type=""*/-->
+
     <form class="form-horizontal" role="form" method="POST" th:action="@{/user/UploadFile/}" th:object="${user}" enctype="multipart/form-data" >
 
         <div class="row">
@@ -28,19 +57,17 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <div class="input-group-addon" style="width: 2.6rem"><i></i></div>
                         <input type="file"  class="form-control" id="file" name="file"
                                required autofocus>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Upload</button>
-            </div>
-        </div>
+
+                <button class="button" type="submit">Upload</button>
+
+
     </form>
 </div>
 </body>

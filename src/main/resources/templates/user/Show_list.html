@@ -8,7 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <title>User List</title>
     <style>
         table {
@@ -26,13 +27,139 @@
         tr:nth-child(even) {
             background-color: #EDEDED;
         }
-    </style>
+        .main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.img
+{
+height:80px;
+width:80px;
+}
+
+.button
+{
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 1px;
+  cursor: pointer;
+  text-align: center;
+margin-left:190px;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+
+#button
+{
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+
+#button1
+{
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+.button1
+{
+ display: inline-block;
+  padding: 15px 25px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+.heading
+{
+text-align:center;
+}
+
+   </style>
 </head>
 <body>
-<div th:switch="${userList}">
-    <h2>User List</h2>
 
-    <table>
+<div th:switch="${userList}">
+    <div class="container">
+
+<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+
+
+        <table align="center">
+
+            <tr>
+        <form action="/search1" class="from-inline">
+
+                    <td>
+            <input type="text" class="form-control" name="name" placeholder="search user">
+                    </td>
+            <td> <input type="submit" value="search" id="button" class="btn btn-primary"></td>
+        </form>
+
+
+        <form action="/search2" class="from-inline">
+<td>
+    <input type="text" class="form-control" name="department" placeholder="search user Department"></td>
+            <td>
+                <input type="submit" value="search" id="button1" class="btn btn-primary"></td>
+        </form>
+                </tr></table>
+        </div>
+
+        <br>
+
+    <table align="center" >
         <tr>
             <th>#ID</th>
             <th>NAME</th>
@@ -53,7 +180,7 @@
             <td>
                 <div class="container">
                     <span th:utext="${userForm}"></span>
-                    <a  th:href="@{/user/updateUser/{id} (id=${user.id})}">UPDATE</a>
+                        <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
                 </div>
 
 
@@ -62,19 +189,15 @@
             <td>
                 <div class="container">
                     <span th:utext="${userForm}"></span>
-                    <a  th:href="@{/user/deleteUser/{id} (id=${user.id})}">DELETE</a>
+                    <a class='fas fa-trash-alt' style='font-size:24px;color:skyblue' th:href="@{/user/deleteUser/{id} (id=${user.id})}"></a>
                 </div>
 
             </td>
-
-
-
-
         </tr>
 
 
-        <a class="btn btn-primary" th:href="@{/user/addUser/}" role="button" >Add New User</a>
-&nbsp;&nbsp; <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" >Upload Csv File</a>
+        <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><button type="submit" class="button">Add New User</button></a>
+      &nbsp; <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><button type="submit" class="button1">Upload Csv File</button></a>
 
 
     </table>
