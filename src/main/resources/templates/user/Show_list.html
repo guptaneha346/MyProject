@@ -52,17 +52,18 @@
 .img
 {
 height:80px;
+
 width:80px;
 }
 
 .button
 {
  display: inline-block;
-  padding: 15px 25px;
-  font-size: 1px;
+  padding: 10px 10px;
+  font-size: 14px;
   cursor: pointer;
   text-align: center;
-margin-left:190px;
+
   text-decoration: none;
   outline: none;
   color: #fff;
@@ -75,7 +76,7 @@ margin-left:190px;
 #button
 {
  display: inline-block;
-  padding: 15px 25px;
+  padding: 10px 10px;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
@@ -92,7 +93,7 @@ margin-left:190px;
 #button1
 {
  display: inline-block;
-  padding: 15px 25px;
+  padding: 10px 10px;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
@@ -108,7 +109,7 @@ margin-left:190px;
 .button1
 {
  display: inline-block;
-  padding: 15px 25px;
+padding: 10px 10px;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
@@ -121,9 +122,9 @@ margin-left:190px;
   border-radius: 15px;
 
 }
-.heading
-{
-text-align:center;
+#table{
+align:center;
+
 }
 
    </style>
@@ -134,27 +135,29 @@ text-align:center;
     <div class="container">
 
 <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+        <table align="center" border="none">
 
 
-        <table align="center">
 
-            <tr>
+
+
         <form action="/search1" class="from-inline">
 
-                    <td>
-            <input type="text" class="form-control" name="name" placeholder="search user">
-                    </td>
-            <td> <input type="submit" value="search" id="button" class="btn btn-primary"></td>
-        </form>
+<tr><td>
+            <input type="text" class="form-control" name="name"|name="department" placeholder="search user OR Department Name">
 
 
-        <form action="/search2" class="from-inline">
-<td>
-    <input type="text" class="form-control" name="department" placeholder="search user Department"></td>
-            <td>
-                <input type="submit" value="search" id="button1" class="btn btn-primary"></td>
+
+
+    <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
+    <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><button type="submit" class="button">Add New User</button></a>
+
+    <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><button type="submit" class="button1">Upload Csv File</button></a>
+
+
+</td></tr>
         </form>
-                </tr></table>
+                </table>
         </div>
 
         <br>
@@ -195,9 +198,6 @@ text-align:center;
             </td>
         </tr>
 
-
-        <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><button type="submit" class="button">Add New User</button></a>
-      &nbsp; <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><button type="submit" class="button1">Upload Csv File</button></a>
 
 
     </table>
