@@ -1,47 +1,214 @@
 <!DOCTYPE html>
-<html xmlns:spring="http://java.sun.com/xml/ns/javaee" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <title>User List</title>
-    <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="../../webjars/jquery/3.0.0/js/jquery.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #EDEDED;
+        }
+        .main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.img
+{
+height:80px;
+
+width:80px;
+}
+
+.button
+{
+ display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+
+#button
+{
+ display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+
+#button1
+{
+ display: inline-block;
+  padding: 15px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+.button1
+{
+ display: inline-block;
+padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+#table{
+align:center;
+
+}
+.searchboxname
+{
+height:30px;
+}
+
+.searchboxname1
+{
+height:30px;
+}
+#style{
+border:none;
+
+}
+#heading{
+margin-left:400px;
+color:#008CBA;
+}
+
+   </style>
 </head>
-<div>
-<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI">
-</div>
 <body>
+<h2 id="heading">User Information List</h2>
 
 <div th:switch="${userList}">
     <div class="container">
-        <h2>User List</h2>
-        <form action="/search" class="from-inline">
 
-            <input type="text" class="form-control" name="name" placeholder="search user">
-            <input type="submit" value="search" class="btn btn-primary">
+
+
+
+
+        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+
+
+
+        </div>
+        <table align="center">
+
+            <form action="/search" class="from-inline">
+
+                <tr><td id="style">
+                    <input type="text" class="searchboxname"  name="name" placeholder="search user ">
+
+
+
+                    <input type="text" class="searchboxname1"  name="department" placeholder="Department Name">
+
+                    <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
+
+
+
+                </td></tr>
+            </form>
+        </table>
     </div>
-    </form>
-    <table class="table table-striped">
-        <thead>
-        <th scope="row">#ID</th>
-        <th scope="row">NAME</th>
-        <th scope="row">DEPARTMENT</th>
-        <th scope="row">NUMBER</th>
 
-        </thead>
-        <tbody>
-        <tr th:each="user : ${userList}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.department}"></td>
-            <td th:text="${user.number}"></td>
+    <br>
+
+    <table align="center" >
+        <tr>
+
+            <th>NAME</th>
+            <th>DEPARTMENT</th>
+            <th>Email Id</th>
+            <th>NUMBER</th>
 
         </tr>
-        </tbody>
+        <tr th:each="user : ${userList}">
+
+
+
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.department}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.number}"></td>
+
+
+
+
+
+
+
+        </tr>
+
+
+
     </table>
-</div>
-
-
 </div>
 </body>
 </html>

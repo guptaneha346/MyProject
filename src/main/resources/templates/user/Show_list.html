@@ -2,12 +2,9 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
 <head>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="../../webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../../webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     <title>User List</title>
@@ -126,34 +123,57 @@ padding: 10px 10px;
 align:center;
 
 }
+.searchboxname
+{
+height:30px;
+}
+
+.searchboxname1
+{
+height:30px;
+}
+.logout
+{
+float:right;
+}
 
    </style>
 </head>
 <body>
 
+
 <div th:switch="${userList}">
     <div class="container">
 
+
+
+
+
 <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
-        <table align="center" border="none">
+
+<div class="logout">
+        <h2>Welcome
+        </h2>
+
+</div>
+        <table align="center">
+
+            <form action="/search1" class="from-inline">
+
+<tr><td style="border:none">
+            <input type="text" class="searchboxname"  name="name" placeholder="search user ">
 
 
 
-
-
-        <form action="/search1" class="from-inline">
-
-<tr><td>
-            <input type="text" class="form-control" name="name"|name="department" placeholder="search user OR Department Name">
-
-
-
+    <input type="text" class="searchboxname1"  name="department" placeholder="Department Name">
 
     <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
-    <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><button type="submit" class="button">Add New User</button></a>
 
-    <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><button type="submit" class="button1">Upload Csv File</button></a>
+    <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><span class="button">Add New User</span></a>
 
+    <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><span class="button1">Upload Csv File</span></a>
+
+    <a class="btn btn-primary" id="logout" th:href="@{/logout}" role="button" ><span class="button">Logout</span></a>
 
 </td></tr>
         </form>
@@ -167,6 +187,7 @@ align:center;
             <th>#ID</th>
             <th>NAME</th>
             <th>DEPARTMENT</th>
+            <th>Email Id</th>
             <th>NUMBER</th>
             <th>UPDATE</th>
             <th>DELETE</th>
@@ -177,12 +198,13 @@ align:center;
             <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.department}"></td>
+            <td th:text="${user.email}"></td>
             <td th:text="${user.number}"></td>
 
 
             <td>
                 <div class="container">
-                    <span th:utext="${userForm}"></span>
+
                         <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
                 </div>
 

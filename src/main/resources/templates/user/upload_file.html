@@ -3,19 +3,40 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Sign up</title>
+    <title>Upload File</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <style>
         .button{
            display: inline-block;
-  padding: 15px 25px;
+  padding: 10px 10px;
   font-size: 24px;
   cursor: pointer;
   text-align: center;
   margin-left:400px;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+#button{
+           display: inline-block;
+  padding: 10px 10px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+
   text-decoration: none;
   outline: none;
   color: #fff;
@@ -32,13 +53,59 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+#button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+  .img
+ {
+  height:100px;
+   width:100px;
+                }
+
+
+ .file-field.big .file-path-wrapper {
+height: 3.2rem; }
+.file-field.big .file-path-wrapper .file-path {
+height: 3rem; }
     </style>
 
+    <style>
+#myProgress {
+  width: 50%;
+  margin-left:300px;
+  background-color: #ddd;
+}
 
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+</style>
+    <script>
+function move() {
+  var elem = document.getElementById("myBar");
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
+}
+</script>
 
 
 </head>
 <body>
+<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 <div class="container">
 
     <form class="form-horizontal" role="form" method="POST" th:action="@{/user/UploadFile/}" th:object="${user}" enctype="multipart/form-data" >
@@ -47,28 +114,43 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <h2>Upload File User</h2>
-                <hr>
+
+
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="file">Upload file</label>
+
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i></i></div>
                         <input type="file"  class="form-control" id="file" name="file"
-                               required autofocus>
+                                required autofocus>
+
                     </div>
                 </div>
             </div>
         </div>
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
 
-                <button class="button" type="submit">Upload</button>
+        <br>
 
+
+        <button class="button" onclick="move()"
+                 type="submit">Upload</button>
+
+        <button type="reset" id="button">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <span>Cancel upload</span>
+        </button>
 
     </form>
+
+
 </div>
 </body>
 </html>

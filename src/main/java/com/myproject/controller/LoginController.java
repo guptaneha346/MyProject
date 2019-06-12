@@ -1,5 +1,7 @@
 package com.myproject.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import com.myproject.model.User;
@@ -9,6 +11,7 @@ import com.myproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,7 +62,7 @@ public class LoginController {
             userService.saveUser(user);
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new UserSignup());
-            model.setViewName("user/signup");
+            model.setViewName("user/login");
         }
 
         return model;
@@ -79,8 +82,9 @@ public class LoginController {
 
 
          @GetMapping(value = "/search")
-         public  String search(Model model, @RequestParam(defaultValue = "") String name){
+         public  String search(Model model, @RequestParam(defaultValue = "") String name,String department){
         model.addAttribute("userList",userService.findByName(name));
+             model.addAttribute("userList",userService.findByDepartment(department));
         return "user/user_list";
 
 }
@@ -95,13 +99,6 @@ public class LoginController {
 
     }
 
-    @GetMapping(value = "/search2")
-    public  String search2(Model model, @RequestParam(defaultValue = "") String department){
-        model.addAttribute("userList",userService.findByDepartment(department));
-        return "user/Show_list";
-
-    }
-
     @RequestMapping(value= {"/home"}, method=RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView model = new ModelAndView();
@@ -109,7 +106,7 @@ public class LoginController {
         UserSignup user = userService.findUserByEmail(auth.getName());
 
         model.addObject("userName", user.getFirstname() + " " + user.getLastname());
-        model.setViewName("/list1");
+        model.setViewName("/user/list");
         return model;
     }
 
@@ -118,5 +115,14 @@ public class LoginController {
         ModelAndView model = new ModelAndView();
         model.setViewName("errors/access_denied");
         return model;
+    }
+
+    @RequestMapping(value="/logout", method=RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/";
     }
 }

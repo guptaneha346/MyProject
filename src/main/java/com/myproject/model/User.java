@@ -22,6 +22,9 @@ public class User {
     @Column(name="number")
     private int number;
 
+    @Column(name="email")
+    private String email;
+
     @Column(name="filetype")
     private String filetype;
 
@@ -29,17 +32,19 @@ public class User {
     private MultipartFile file;
 
     public  User(){}
-    public User(String name,String department,int number) {
+    public User(String name,String department,String email,int number) {
         this.name = name;
         this.department=department;
         this.number=number;
+        this.email=email;
     }
 
 
-    public User(String name,String department,int number,String filetype) {
+    public User(String name,String department,String email,int number,String filetype) {
         this.name = name;
         this.department=department;
         this.number=number;
+        this.email=email;
         this.filetype=filetype;
     }
 
@@ -92,6 +97,14 @@ public class User {
         this.file = file;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -99,6 +112,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", department='" + department + '\'' +
                 ", number=" + number +
+                ", email='" + email + '\'' +
                 ", filetype='" + filetype + '\'' +
                 ", file=" + file +
                 '}';

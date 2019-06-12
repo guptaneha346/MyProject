@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService {
             CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
             List<String[]> rows = csvReader.readAll();
             for (String[] row : rows) {
-                userRepository.save(new User(row[0], row[1], Integer.parseInt(row[2]), FilenameUtils.getExtension(file.getOriginalFilename())));
+                userRepository.save(new User(row[0], row[1],row[2],Integer.parseInt(row[3]),FilenameUtils.getExtension(file.getOriginalFilename())));
 
             }
             return true;

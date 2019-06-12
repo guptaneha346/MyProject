@@ -13,13 +13,24 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
             <meta charset="UTF-8">
+            <style>
+                .img
+                {
+                 height:90px;
+
+                 width:90px;
+                }
+            </style>
         </head>
         <body>
 
 
+        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 
 
-        <form class="form-horizontal" role="form" method="POST" th:action="@{/user/saveUser}" th:object="${userForm}">
+
+            <form class="form-horizontal" th:object="${userForm}" th:action="@{/user/saveUser}" method="post">
+                <input type="hidden" th:field="*{id}" />
             <div class="row justify-content-sm-center">
                 <div class="container pt-3">
                     <div class="row justify-content-sm-center">
@@ -37,11 +48,19 @@
                                     <input id="department" type="text" class="form-control" name="department" placeholder="Department">
                                 </div>
                                 <br>
+
+                                <div class="input-group">
+                                    <span>Email Id</span>
+                                    <input id="department" type="email" class="form-control" name="email" placeholder="EmailId">
+                                </div>
+                                <br>
+
+
                             <div class="input-group">
                                 <span>Number</span>
                                 <input id="number" type="text" class="form-control" name="number" placeholder="Number">
                             </div>
-
+<br>
                                 <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Add User</button>
                                 <label class="checkbox float-left">
                                 </label>
