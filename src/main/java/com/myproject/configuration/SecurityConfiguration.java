@@ -57,13 +57,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/user/list")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .and().rememberMe()
-                .tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(60*60)
-                .and().exceptionHandling().accessDeniedPage("/access_denied");
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+               ;
     }
 
     @Bean

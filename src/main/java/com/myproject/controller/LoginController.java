@@ -95,6 +95,10 @@ public class LoginController {
     public  String search1(Model model, @RequestParam(defaultValue = "") String name,String department){
         model.addAttribute("userList",userService.findByName(name));
         model.addAttribute("userList",userService.findByDepartment(department));
+        if(name==null && department==null)
+        {
+            return "user/Show_list";
+        }
         return "user/Show_list";
 
     }
