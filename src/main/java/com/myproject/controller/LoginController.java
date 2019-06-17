@@ -82,9 +82,10 @@ public class LoginController {
 
 
          @GetMapping(value = "/search")
-         public  String search(Model model, @RequestParam(defaultValue = "") String name,String department){
-        model.addAttribute("userList",userService.findByName(name));
+         public  String search(Model model, @RequestParam() String name,String department){
              model.addAttribute("userList",userService.findByDepartment(department));
+             model.addAttribute("userList", userService.findByName(name));
+
         return "user/user_list";
 
 }
@@ -93,15 +94,14 @@ public class LoginController {
 
     @GetMapping(value = "/search1")
     public  String search1(Model model, @RequestParam(defaultValue = "") String name,String department){
-        model.addAttribute("userList",userService.findByName(name));
-        model.addAttribute("userList",userService.findByDepartment(department));
-        if(name==null && department==null)
-        {
-            return "user/Show_list";
-        }
+
+model.addAttribute("userList",userService.findByDepartment(department));
+    model.addAttribute("userList", userService.findByName(name));
+
         return "user/Show_list";
 
     }
+
 
     @RequestMapping(value= {"/home"}, method=RequestMethod.GET)
     public ModelAndView home() {

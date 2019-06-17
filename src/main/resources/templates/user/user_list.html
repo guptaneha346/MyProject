@@ -137,23 +137,19 @@ border:none;
 
 }
 #heading{
-margin-left:400px;
+margin-left:450px;
 color:#008CBA;
 }
 
    </style>
 </head>
 <body>
-<h2 id="heading">User Information List</h2>
 
+<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 <div th:switch="${userList}">
     <div class="container">
+        <h2 id="heading">Directory</h2>
 
-
-
-
-
-        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 
 
 
@@ -183,10 +179,13 @@ color:#008CBA;
     <table align="center" >
         <tr>
 
-            <th>NAME</th>
-            <th>DEPARTMENT</th>
+
+            <th>Name</th>
+            <th>Department</th>
             <th>Email Id</th>
-            <th>NUMBER</th>
+            <th>Phone number</th>
+            <th>Extension number</th>
+
 
         </tr>
         <tr th:each="user : ${userList}">
@@ -198,7 +197,7 @@ color:#008CBA;
             <td th:text="${user.email}"></td>
             <td th:text="${user.number}"></td>
 
-
+            <td th:text="${user.extensionnumber}"></td>
 
 
 

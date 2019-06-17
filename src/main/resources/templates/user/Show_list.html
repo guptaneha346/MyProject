@@ -134,7 +134,7 @@ height:30px;
 }
 .logout
 {
-float:right;
+margin-left:500px;
 }
 
    </style>
@@ -152,15 +152,16 @@ float:right;
 <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 
 <div class="logout">
-        <h2>Welcome
+        <h2>Directory
         </h2>
 
 </div>
         <table align="center">
 
-            <form action="/search1" class="from-inline">
+            <form action="/search1"  class="from-inline">
 
 <tr><td style="border:none">
+
             <input type="text" class="searchboxname"  name="name" placeholder="search user ">
 
 
@@ -175,7 +176,8 @@ float:right;
 
     <a class="btn btn-primary" id="logout" th:href="@{/logout}" role="button" ><span class="button">Logout</span></a>
 
-</td></tr>
+</td></tr></form>
+
         </form>
                 </table>
         </div>
@@ -185,12 +187,13 @@ float:right;
     <table align="center" >
         <tr>
             <th>#ID</th>
-            <th>NAME</th>
-            <th>DEPARTMENT</th>
+            <th>Name</th>
+            <th>Department</th>
             <th>Email Id</th>
-            <th>NUMBER</th>
-            <th>UPDATE</th>
-            <th>DELETE</th>
+            <th>Phone number</th>
+            <th>Extension number</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         <tr th:each="user : ${userList}">
 
@@ -200,6 +203,7 @@ float:right;
             <td th:text="${user.department}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.number}"></td>
+            <td th:text="${user.extensionnumber}"></td>
 
 
             <td>

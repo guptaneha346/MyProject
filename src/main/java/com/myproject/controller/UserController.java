@@ -46,6 +46,7 @@ public class UserController {
         return model;
     }
 
+
     @RequestMapping(value="/uploadUserFile/", method=RequestMethod.GET)
     public ModelAndView addUser1() {
         ModelAndView model = new ModelAndView();
@@ -63,7 +64,7 @@ public class UserController {
 
         User user = userService.getUserById(id);
         model.addObject("userForm", user);
-        model.setViewName("user/user_form");
+        model.setViewName("user/update_form");
 
         return model;
     }

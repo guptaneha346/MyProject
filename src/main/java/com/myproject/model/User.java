@@ -22,6 +22,10 @@ public class User {
     @Column(name="number")
     private int number;
 
+    @Column(name="extensionnumber")
+    private int extensionnumber;
+
+
     @Column(name="email")
     private String email;
 
@@ -32,20 +36,23 @@ public class User {
     private MultipartFile file;
 
     public  User(){}
-    public User(String name,String department,String email,int number) {
+    public User(String name,String department,String email,int number,int extensionnumber) {
         this.name = name;
         this.department=department;
         this.number=number;
+        this.extensionnumber=extensionnumber;
         this.email=email;
     }
 
 
-    public User(String name,String department,String email,int number,String filetype) {
+    public User(String name,String department,String email,int number,int extensionnumber,String filetype) {
         this.name = name;
         this.department=department;
         this.number=number;
+        this.extensionnumber=extensionnumber;
         this.email=email;
         this.filetype=filetype;
+
     }
 
     public long getId() {
@@ -105,6 +112,14 @@ public class User {
         this.email = email;
     }
 
+    public int getExtensionnumber() {
+        return extensionnumber;
+    }
+
+    public void setExtensionnumber(int extensionnumber) {
+        this.extensionnumber = extensionnumber;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -112,6 +127,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", department='" + department + '\'' +
                 ", number=" + number +
+                ", extensionnumber=" + extensionnumber +
                 ", email='" + email + '\'' +
                 ", filetype='" + filetype + '\'' +
                 ", file=" + file +

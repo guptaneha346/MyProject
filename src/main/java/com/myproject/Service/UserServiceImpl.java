@@ -8,25 +8,17 @@ import com.myproject.repository.UserRepository;
 import com.myproject.repository.UserLoginRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.sun.rowset.internal.Row;
+
 import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.jcp.xml.dsig.internal.dom.Utils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.myproject.repository.RoleRepository;
 
-import java.awt.print.Pageable;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -143,7 +135,8 @@ public class UserServiceImpl implements UserService {
             CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
             List<String[]> rows = csvReader.readAll();
             for (String[] row : rows) {
-                userRepository.save(new User(row[0], row[1],row[2],Integer.parseInt(row[3]),FilenameUtils.getExtension(file.getOriginalFilename())));
+
+                userRepository.save(new User(row[0], row[1],row[2],Integer.parseInt(row[3]),Integer.parseInt(row[4]),FilenameUtils.getExtension(file.getOriginalFilename())));
 
             }
             return true;
