@@ -15,13 +15,11 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -82,7 +80,7 @@ public class LoginController {
 
 
          @GetMapping(value = "/search")
-         public  String search(Model model, @RequestParam() String name,String department){
+         public  String search(Model model, @RequestParam("name") String name,Model model1,@RequestParam("department") String department){
              model.addAttribute("userList",userService.findByDepartment(department));
              model.addAttribute("userList", userService.findByName(name));
 
@@ -92,15 +90,8 @@ public class LoginController {
 
 
 
-    @GetMapping(value = "/search1")
-    public  String search1(Model model, @RequestParam(defaultValue = "") String name,String department){
 
-model.addAttribute("userList",userService.findByDepartment(department));
-    model.addAttribute("userList", userService.findByName(name));
 
-        return "user/Show_list";
-
-    }
 
 
     @RequestMapping(value= {"/home"}, method=RequestMethod.GET)

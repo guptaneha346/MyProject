@@ -13,20 +13,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="name")
+    @Column(name="Name")
     private String name;
 
-    @Column(name="department")
+    @Column(name="Department")
     private String department;
 
-    @Column(name="number")
+    @Column(name="Phonenumber")
     private int number;
 
-    @Column(name="extensionnumber")
+    @Column(name="Extensionnumber")
     private int extensionnumber;
 
 
-    @Column(name="email")
+    @Column(name="Email")
     private String email;
 
     @Column(name="filetype")
