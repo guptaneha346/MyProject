@@ -136,6 +136,9 @@ height:30px;
 {
 margin-left:500px;
 }
+#heading{
+margin-left:400px;
+}
 
    </style>
 </head>
@@ -149,40 +152,40 @@ margin-left:500px;
 
 
 
-<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 
-<div class="logout">
-        <h2>Directory
-        </h2>
+        <div class="logout">
+            <h2>Directory
+            </h2>
 
-</div>
+        </div>
         <table align="center">
 
             <form action="/search1/search"  class="from-inline">
 
-<tr><td style="border:none">
+                <tr><td style="border:none">
 
-            <input type="text" class="searchboxname"  name="name" placeholder="search user ">
+                    <input type="text" class="searchboxname"  name="name" placeholder="search user ">
 
 
 
-    <input type="text" class="searchboxname1"    name="department" placeholder="Department Name">
+                    <input type="text" class="searchboxname1"    name="department" placeholder="Department Name">
 
-    <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
+                    <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
 
-    <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><span class="button">Add New User</span></a>
+                    <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><span class="button">Add New User</span></a>
 
-    <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><span class="button1">Upload Csv File</span></a>
+                    <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><span class="button1">Upload Csv File</span></a>
 
-    <a class="btn btn-primary" id="logout" th:href="@{/logout}" role="button" ><span class="button">Logout</span></a>
+                    <a class="btn btn-primary" id="logout" th:href="@{/logout}" role="button" ><span class="button">Logout</span></a>
 
-</td></tr></form>
+                </td></tr></form>
 
-        </form>
-                </table>
-        </div>
+            </form>
+        </table>
+    </div>
 
-        <br>
+    <br>
 
     <table align="center" >
         <tr>
@@ -209,7 +212,7 @@ margin-left:500px;
             <td>
                 <div class="container">
 
-                        <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
+                    <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
                 </div>
 
 
@@ -227,6 +230,7 @@ margin-left:500px;
 
 
     </table>
+    <h2 id="heading">Record Not Match Seacrh Again</h2>
 </div>
 </body>
 </html>

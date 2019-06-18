@@ -107,7 +107,13 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByDepartmentLike("%"+department+"%");
     }
+    @Override
+    public List<User> findByNameAndDepartment(String name,String department) {
 
+
+
+        return userRepository.findByNameAndDepartmentLike("%"+name+"%","%"+department+"%");
+    }
 
     private boolean readDatafromjson(MultipartFile file) {
 

@@ -15,6 +15,12 @@ public interface UserRepository extends CrudRepository<User,Long> {
     List<User> findByNameLike(String name);
 
     List<User> findByDepartmentLike(String department);
+
+
+
+    List<User> findByNameAndDepartmentLike(String name,String department);
+
+
 }
 
 
