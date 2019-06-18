@@ -37,7 +37,7 @@ return "user/Show_list";
             model.addAttribute("userList", userService.findByDepartment(department));
 
 
-            return "user/user_list";
+            return "user/Show_list";
         }
 
         else if(name.equals(name)&&department.equals(department)){
@@ -45,12 +45,12 @@ return "user/Show_list";
             model.addAttribute("userList",userService.findByName(name));
             model.addAttribute("userList",userService.findByDepartment(department));
 
-            return "user/user_list";
+            return "user/Show_list";
         }
 
 
         else
-            return "user/user_list";
+            return "user/Show_list";
 
 
     }
