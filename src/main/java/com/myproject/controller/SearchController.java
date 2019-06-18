@@ -22,41 +22,39 @@ public class SearchController {
 
     @GetMapping(value = "/search")
     public  String search(Model model, @RequestParam("name") String name,Model model1,@RequestParam("department") String department) {
+
         if(name.equals(name)&&department.equals("")){
 
-        model.addAttribute("userList", userService.findByName(name));
-            if(!(name.equals(userService.findByName(name))))
-            {
 
-                return "user/Show_list1";
-            }
-        return "user/Show_list";}
+            model.addAttribute("userList", userService.findByName(name));
 
-     else if(name.equals("")&&department.equals(department)){
+return "user/Show_list";
+        }
+
+        else if(name.equals("")&&department.equals(department)){
 
 
-        model.addAttribute("userList", userService.findByDepartment(department));
-            if(!(name.equals(userService.findByDepartment(department))))
-            {
+            model.addAttribute("userList", userService.findByDepartment(department));
 
-                return "user/Show_list1";
-            }
-return "user/Show_list";}
 
-     else if(name.equals(name)&&department.equals(department)){
+            return "user/user_list";
+        }
 
-         model.addAttribute("userList",userService.findByNameAndDepartment(name,department));
-            if(!(name.equals(userService.findByNameAndDepartment(name,department))))
-            {
+        else if(name.equals(name)&&department.equals(department)){
 
-                return "user/Show_list1";
-            }
-         return "user/Show_list";
+            model.addAttribute("userList",userService.findByName(name));
+            model.addAttribute("userList",userService.findByDepartment(department));
+
+            return "user/user_list";
         }
 
 
-      else
-        return "user/Show_list";
+        else
+            return "user/user_list";
+
 
     }
+
 }
+
+

@@ -89,7 +89,7 @@ public class LoginController {
                      System.out.println("1.1111111.11");
                      return "user/Show_list1";
                  }
-                 return "user/Show_list";}
+                 return "user/user_list";}
 
              else if(name.equals("")&&department.equals(department)){
 
@@ -100,7 +100,7 @@ public class LoginController {
                      System.out.println("1.1111111.11");
                      return "user/Show_list1";
                  }
-                 return "user/Show_list";}
+                 return "user/user_list";}
 
              else if(name.equals(name)&&department.equals(department)){
                  System.out.println("33333333");
@@ -111,12 +111,12 @@ public class LoginController {
                      System.out.println("1.1111111.11");
                      return "user/Show_list1";
                  }
-                 return "user/Show_list";
+                 return "user/user_list";
              }
 
 
              else
-                 return "user/Show_list";
+                 return "user/user_list";
 
 
          }

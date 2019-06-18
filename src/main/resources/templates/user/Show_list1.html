@@ -138,6 +138,7 @@ margin-left:500px;
 }
 #heading{
 margin-left:400px;
+color:red;
 }
 
    </style>
@@ -198,31 +199,9 @@ margin-left:400px;
             <th>Update</th>
             <th>Delete</th>
         </tr>
-        <tr th:each="user : ${userList}">
 
 
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.name}"></td>
-            <td th:text="${user.department}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.number}"></td>
-            <td th:text="${user.extensionnumber}"></td>
 
-
-            <td>
-                <div class="container">
-
-                    <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
-                </div>
-
-
-            </td>
-
-            <td>
-                <div class="container">
-                    <span th:utext="${userForm}"></span>
-                    <a class='fas fa-trash-alt' style='font-size:24px;color:skyblue' th:href="@{/user/deleteUser/{id} (id=${user.id})}"></a>
-                </div>
 
             </td>
         </tr>
@@ -230,7 +209,7 @@ margin-left:400px;
 
 
     </table>
-    <h2 id="heading">Record Not Match Seacrh Again</h2>
+    <div id="heading">Record Not Match Seacrh Again..</div>
 </div>
 </body>
 </html>
