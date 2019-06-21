@@ -74,7 +74,10 @@ public class UserServiceImpl implements UserService {
         return userLoginRepository.findByEmail(email);
     }
 
-
+@Override
+public boolean CsvRowError(){
+        return false;
+}
 
     @Override
     public void saveUser(UserSignup userSignup) {
@@ -88,7 +91,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean savDatafromuploadfile(MultipartFile file) {
         boolean isFlag = false;
-
         String extension = FilenameUtils.getExtension(file.getOriginalFilename());
         if (extension.equalsIgnoreCase("json")) {
             isFlag = readDatafromjson(file);
@@ -142,6 +144,8 @@ public class UserServiceImpl implements UserService {
 
     private boolean readDatafromCsv(MultipartFile file) {
         try {
+            String EMAIL = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+
             InputStreamReader reader = new InputStreamReader(file.getInputStream());
             CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
             List<String[]> rows = csvReader.readAll();
@@ -151,6 +155,11 @@ public class UserServiceImpl implements UserService {
     for (String[] row : rows) {
         if(row[0].isEmpty()||row[1].isEmpty()||row[2].isEmpty()||row[3].isEmpty()||row[4].isEmpty()){
             System.out.println("row check");
+            return userService.CsvRowError();
+        }
+        else  if(!(row[2]).matches(EMAIL)){
+
+            System.out.println("email error");
             return false;
         }
        else if(row[4].length()<2||row[4].length()>2)
@@ -176,11 +185,5 @@ System.out.println("error");
             return false;
         }
     }
-
-
-
-
-
-
 
 }
