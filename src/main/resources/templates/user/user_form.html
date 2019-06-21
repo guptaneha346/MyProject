@@ -25,8 +25,13 @@
         function Validate()
         {
             var x = document.form1.number.value;
-
+           var y=document.form1.extensionnumber.value;
            if(isNaN(x)||x.indexOf(" ")!=-1)
+           {
+              alert("Enter numeric value")
+
+           }
+             if(isNaN(y)||y.indexOf(" ")!=-1)
            {
               alert("Enter numeric value")
 
@@ -36,7 +41,11 @@
                 alert("enter 10digit number");
 
            }
+  if (y.length<2)
+           {
+                alert("enter 2digit number");
 
+           }
            if (x.charAt(0)!="9")
            {
                 alert("it should start with 9 ");
