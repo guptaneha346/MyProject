@@ -21,6 +21,29 @@
                  width:90px;
                 }
             </style>
+            <script >
+        function Validate()
+        {
+            var x = document.form1.number.value;
+
+           if(isNaN(x)||x.indexOf(" ")!=-1)
+           {
+              alert("Enter numeric value")
+
+           }
+           if (x.length<10)
+           {
+                alert("enter 10digit number");
+
+           }
+
+           if (x.charAt(0)!="9")
+           {
+                alert("it should start with 9 ");
+
+           }
+        }
+        </script>
         </head>
         <body>
 
@@ -29,7 +52,7 @@
 
 
 
-            <form class="form-horizontal" th:object="${userForm}" th:action="@{/user/saveUser}" method="post">
+            <form name="form1" class="form-horizontal" th:object="${userForm}" th:action="@{/user/saveUser}" method="post">
                 <input type="hidden" th:field="*{id}" />
             <div class="row justify-content-sm-center">
                 <div class="container pt-3">
@@ -40,34 +63,34 @@
                                 <h2>ADD NEW USER</h2>
                                 <div class="input-group">
                                     <span>Name</span>
-                                    <input id="name" type="text" class="form-control" name="name" placeholder="Name">
+                                    <input id="name" type="text" class="form-control" name="name" placeholder="Name" required autofocus>
                                 </div>
                                 <br>
                                 <div class="input-group">
                                     <span>Department</span>
-                                    <input id="department" type="text" class="form-control" name="department" placeholder="Department">
+                                    <input id="department" type="text" class="form-control" name="department" required autofocus placeholder="Department">
                                 </div>
                                 <br>
 
                                 <div class="input-group">
                                     <span>Email Id</span>
-                                    <input id="department" type="email" class="form-control" name="email" placeholder="EmailId">
+                                    <input id="department" type="email" class="form-control" required autofocus name="email" placeholder="EmailId">
                                 </div>
                                 <br>
 
 
                             <div class="input-group">
                                 <span>Number</span>
-                                <input id="number" type="text" class="form-control" maxlength="10" name="number" placeholder="Number">
+                                <input id="number" type="text"  class="form-control"  min="10" maxlength="10" name="number" placeholder="Number" required autofocus>
                             </div>
 
                                 <br>
                                 <div class="input-group">
                                     <span> Extension number</span>
-                                    <input id="extensionnumber" type="text" class="form-control" maxlength="2" name="extensionnumber" placeholder="Extension Number">
+                                    <input id="extensionnumber" type="text"  required autofocus class="form-control" maxlength="2" name="extensionnumber" placeholder="Extension Number">
                                 </div>
 <br>
-                                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Add User</button>
+                                <button class="btn btn-lg btn-primary btn-block mb-1" onclick="Validate()" type="submit" >Add User</button>
                                 <label class="checkbox float-left">
                                 </label>
 

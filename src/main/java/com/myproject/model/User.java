@@ -21,7 +21,6 @@ public class User {
     private String department;
 
     @Column(name="Phonenumber")
-
     private int number;
 
     @Column(name="Extensionnumber")
