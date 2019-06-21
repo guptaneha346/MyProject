@@ -19,8 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.myproject.repository.RoleRepository;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 import javax.transaction.Transactional;
 
@@ -36,6 +35,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @Qualifier("userLoginRepository")
     @Autowired
@@ -72,6 +74,8 @@ public class UserServiceImpl implements UserService {
         return userLoginRepository.findByEmail(email);
     }
 
+
+
     @Override
     public void saveUser(UserSignup userSignup) {
         userSignup.setPassword(bCryptPasswordEncoder.encode(userSignup.getPassword()));
@@ -96,6 +100,7 @@ public class UserServiceImpl implements UserService {
         return isFlag;
     }
 
+
     @Override
     public List<User> findByName(String name) {
 
@@ -109,11 +114,11 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public List<User> findByNameAndDepartment(String name,String department) {
-
-
-
         return userRepository.findByNameAndDepartmentLike("%"+name+"%","%"+department+"%");
     }
+
+
+
 
     private boolean readDatafromjson(MultipartFile file) {
 
@@ -140,17 +145,37 @@ public class UserServiceImpl implements UserService {
             InputStreamReader reader = new InputStreamReader(file.getInputStream());
             CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
             List<String[]> rows = csvReader.readAll();
-            for (String[] row : rows) {
+    String header="name,department,email,number,extensionnumber";
+    if(rows.isEmpty()) {
+      return false; }
+    for (String[] row : rows) {
+        if(row[0].isEmpty()||row[1].isEmpty()||row[2].isEmpty()||row[3].isEmpty()||row[4].isEmpty()){
+            System.out.println("row check");
+            return false;
+        }
+       else if(row[4].length()<2||row[4].length()>2)
+        {
+            System.out.println("extensionnumber error");
+            return false;
 
-                userRepository.save(new User(row[0], row[1],row[2],Integer.parseInt(row[3]),Integer.parseInt(row[4]),FilenameUtils.getExtension(file.getOriginalFilename())));
+        }
+       else if(row[3].length()<10||row[3].length()>10)
+        {
+            System.out.println("number error");
+            return false;
 
-            }
-            return true;
-        } catch (Exception e) {
+        }
+
+       userRepository.save(new User(row[0], row[1], row[2], Integer.parseInt(row[3]), Integer.parseInt(row[4]), FilenameUtils.getExtension(file.getOriginalFilename())));
+    }
+
+    return true;
+        } catch (Exception e)
+        {
+System.out.println("error");
             return false;
         }
     }
-
 
 
 

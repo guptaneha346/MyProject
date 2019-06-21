@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:spring="http://java.sun.com/xml/ns/javaee">
+<head>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <title>User List</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #EDEDED;
+        }
+        .main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.img
+{
+height:80px;
+
+width:80px;
+}
+
+.button
+{
+ display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+
+#button
+{
+ display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+
+#button1
+{
+ display: inline-block;
+  padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+.button1
+{
+ display: inline-block;
+padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color:  #008CBA;
+  border: none;
+  border-radius: 15px;
+
+}
+#table{
+align:center;
+
+}
+.searchboxname
+{
+height:30px;
+}
+
+.searchboxname1
+{
+height:30px;
+}
+.logout
+{
+margin-left:500px;
+}
+#error{
+margin-left:300px;
+color:red;
+}
+#error1{
+margin-left:500px;
+color:red;
+}
+
+   </style>
+</head>
+<body>
+
+
+<div th:switch="${userList}">
+    <div class="container">
+
+
+
+
+
+        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+
+        <div class="logout">
+            <h2>Directory
+            </h2>
+
+        </div>
+        <table align="center">
+
+            <form action="/search1/search"  class="from-inline">
+
+                <tr><td style="border:none">
+
+                    <input type="text" class="searchboxname"  name="name" placeholder="search user ">
+
+
+
+                    <input type="text" class="searchboxname1"    name="department" placeholder="Department Name">
+
+                    <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
+
+                    <a class="btn btn-primary" id="adduser" th:href="@{/user/addUser/}" role="button" ><span class="button">Add New User</span></a>
+
+                    <a class="btn btn-primary" th:href="@{/user/uploadUserFile/}" role="button" align="center" ><span class="button1">Upload Csv File</span></a>
+
+                    <a class="btn btn-primary" id="logout" th:href="@{/logout}" role="button" ><span class="button">Logout</span></a>
+
+                </td></tr></form>
+
+            </form>
+        </table>
+    </div>
+    <h3 id="error">Wrong format your csv file please correct the csv file </h3>
+    <h3 id="error1">And upload csv file agian..</h3>
+
+
+    <table align="center" >
+        <tr>
+            <th>#ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email Id</th>
+            <th>Phone number</th>
+            <th>Extension number</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="user : ${userList}">
+
+
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.department}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.number}"></td>
+            <td th:text="${user.extensionnumber}"></td>
+
+
+            <td>
+                <div class="container">
+
+                    <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
+                </div>
+
+
+            </td>
+
+            <td>
+                <div class="container">
+                    <span th:utext="${userForm}"></span>
+                    <a class='fas fa-trash-alt' style='font-size:24px;color:skyblue' th:href="@{/user/deleteUser/{id} (id=${user.id})}"></a>
+                </div>
+
+            </td>
+        </tr>
+
+
+
+    </table>
+</div>
+</body>
+</html>

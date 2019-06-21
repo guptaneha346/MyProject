@@ -3,10 +3,9 @@ package com.myproject.Service;
 import com.myproject.model.User;
 
 import com.myproject.model.UserSignup;
-import org.springframework.data.domain.Page;
+
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface UserService {
