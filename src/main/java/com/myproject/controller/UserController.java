@@ -97,34 +97,20 @@ public class UserController {
 
     }
 
-    @PostMapping(value = "/UploadFile1/")
-    public String uploadfile1(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
-        boolean isFlag = userService.savDatafromuploadfile(user.getFile());
-
-        if (isFlag) {
-            System.out.println("uploadfile");
-        } else {
-            System.out.println("try again");
-        }
-
-        return "redirect:/user/file";
-    }
 
     @PostMapping(value = "/UploadFile/")
     public String uploadfile(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
         boolean isFlag = userService.savDatafromuploadfile(user.getFile());
-
+        boolean row=userService.CsvRowError();
 
         if (isFlag) {
             System.out.println("uploadfile");
 
-        } else {
+        }
+        else {
             System.out.println("try again");
             return "user/CsvError";
         }
-
-
-
         return "redirect:/user/file";
     }
 

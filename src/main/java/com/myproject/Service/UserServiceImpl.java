@@ -1,6 +1,7 @@
 package com.myproject.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.NoClass;
 import com.myproject.model.User;
 import com.myproject.model.UserSignup;
 import com.myproject.repository.UserRepository;
@@ -11,6 +12,7 @@ import com.opencsv.CSVReaderBuilder;
 
 import org.apache.commons.io.FilenameUtils;
 
+import org.hibernate.type.YesNoType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -78,6 +80,12 @@ public class UserServiceImpl implements UserService {
 public boolean CsvRowError(){
         return false;
 }
+
+    @Override
+    public boolean CsvNumberError() {
+        return false;
+    }
+
 
     @Override
     public void saveUser(UserSignup userSignup) {
@@ -155,7 +163,7 @@ public boolean CsvRowError(){
     for (String[] row : rows) {
         if(row[0].isEmpty()||row[1].isEmpty()||row[2].isEmpty()||row[3].isEmpty()||row[4].isEmpty()){
             System.out.println("row check");
-            return userService.CsvRowError();
+            return false;
         }
         else  if(!(row[2]).matches(EMAIL)){
 
@@ -171,9 +179,7 @@ public boolean CsvRowError(){
        else if(row[3].length()<10||row[3].length()>10)
         {
             System.out.println("number error");
-            return false;
-
-        }
+            return userService.CsvNumberError(); }
 
        userRepository.save(new User(row[0], row[1], row[2], Integer.parseInt(row[3]), Integer.parseInt(row[4]), FilenameUtils.getExtension(file.getOriginalFilename())));
     }

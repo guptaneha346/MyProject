@@ -29,6 +29,7 @@ public interface UserService {
 
     public List<User>  findByNameAndDepartment(String name,String department);
 public boolean CsvRowError();
+public boolean CsvNumberError();
 }
 
 
