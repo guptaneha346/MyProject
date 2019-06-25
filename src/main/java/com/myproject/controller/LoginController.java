@@ -27,7 +27,21 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value= {"/", "/login"}, method=RequestMethod.GET)
+    @RequestMapping(value= {"/"}, method=RequestMethod.GET)
+    public ModelAndView index() {
+        ModelAndView model = new ModelAndView();
+
+        List<User> userList = userService.getAllDetails();
+
+        model.addObject("userList", userList);
+
+        model.setViewName("user/user_list");
+
+        return model;
+    }
+
+
+    @RequestMapping(value= {"/login"}, method=RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView model = new ModelAndView();
 

@@ -37,7 +37,7 @@ public class SearchController {
                 return "user/Show_list1";
             }
 
-            return "user/Show_list";
+            return "user/bootstarpexample";
 
         } else if (name.equals("") && department.equals(department)) {
 
@@ -50,9 +50,9 @@ public class SearchController {
 
             model.addAttribute("userList", userService.findByNameAndDepartment(name, department));
 
-            return "user/Show_list";
+            return "user/bootstarpexample";
         } else
-            return "user/Show_list";
+            return "user/bootstarpexample";
 
 
     }

@@ -28,7 +28,7 @@ public class UserController {
 
         model.addObject("userList", userList);
 
-        model.setViewName("user/Show_list");
+        model.setViewName("user/bootstarpexample");
 
         return model;
     }

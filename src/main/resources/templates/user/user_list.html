@@ -56,7 +56,7 @@ width:80px;
 .button
 {
  display: inline-block;
-  padding: 10px 10px;
+  padding: 15px 15px;
   font-size: 14px;
   cursor: pointer;
   text-align: center;
@@ -132,44 +132,44 @@ height:30px;
 {
 height:30px;
 }
-#style{
-border:none;
-
-}
-#heading{
-margin-left:450px;
-color:#008CBA;
+.logout
+{
+margin-left:500px;
 }
 
    </style>
 </head>
 <body>
-
-<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 <div th:switch="${userList}">
     <div class="container">
-        <h2 id="heading">Directory</h2>
 
+        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 
-
+        <div class="logout">
+            <h2>Directory
+            </h2>
 
         </div>
         <table align="center">
 
-            <form action="/search" class="from-inline">
+            <form action="/search1/search"  class="from-inline">
 
-                <tr><td id="style">
+                <tr><td style="border:none">
+
                     <input type="text" class="searchboxname"  name="name" placeholder="search user ">
 
 
 
-                    <input type="text" class="searchboxname1"  name="department" placeholder="Department Name">
+                    <input type="text" class="searchboxname1"    name="department" placeholder="Department Name">
 
-                    <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
+                  <input type="submit" value="search" id="button1" class="btn btn-primary">&nbsp;
+
+                    <a class="btn btn-primary" id="adduser" th:href="@{/login}" role="button" ><span class="button">Admin Login</span></a>
 
 
 
-                </td></tr>
+                </td></tr></form>
+
             </form>
         </table>
     </div>
@@ -178,31 +178,28 @@ color:#008CBA;
 
     <table align="center" >
         <tr>
-
-
+            <th>#ID</th>
             <th>Name</th>
             <th>Department</th>
             <th>Email Id</th>
             <th>Phone number</th>
             <th>Extension number</th>
 
-
         </tr>
         <tr th:each="user : ${userList}">
 
 
-
+            <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.department}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.number}"></td>
-
             <td th:text="${user.extensionnumber}"></td>
 
 
 
 
-
+            </td>
         </tr>
 
 

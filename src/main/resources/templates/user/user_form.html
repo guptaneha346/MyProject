@@ -1,19 +1,17 @@
 
-
-
-        <!DOCTYPE HTML>
-        <html xmlns:th="http://www.thymeleaf.org">
-        <head>
-            <title>Add user</title>
-            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-            <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-            <meta charset="UTF-8">
-            <style>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add user</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <style>
                 .img
                 {
                  height:90px;
@@ -21,100 +19,80 @@
                  width:90px;
                 }
             </style>
-            <script >
-        function Validate()
-        {
-            var x = document.form1.number.value;
-           var y=document.form1.extensionnumber.value;
-           if(isNaN(x)||x.indexOf(" ")!=-1)
-           {
-              alert("Enter numeric value")
+    <script>
+function validateform(){
+var email=document.myform.email.value;
+var number=document.myform.number.value;
+ String EMAIL = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+if(!(email).matches(EMAIL)){
+  alert("correct the email");
+  return false;
+}
+if(number.length()<10)
+alert("10digit number");
+return false;
 
-           }
-             if(isNaN(y)||y.indexOf(" ")!=-1)
-           {
-              alert("Enter numeric value")
-
-           }
-           if (x.length<10)
-           {
-                alert("enter 10digit number");
-
-           }
-  if (y.length<2)
-           {
-                alert("enter 2digit number");
-
-           }
-           if (x.charAt(0)!="9")
-           {
-                alert("it should start with 9 ");
-
-           }
-        }
-        </script>
-        </head>
-        <body>
+}
+</script>
+</head>
+<body>
 
 
-        <img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
 
 
 
-            <form name="form1" class="form-horizontal" th:object="${userForm}" th:action="@{/user/saveUser}" method="post">
-                <input type="hidden" th:field="*{id}" />
+<form class="form-horizontal" name="myform" th:object="${userForm}" onsubmit="return validateform()" th:action="@{/user/saveUser}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="row justify-content-sm-center">
+        <div class="container pt-3">
             <div class="row justify-content-sm-center">
-                <div class="container pt-3">
-                    <div class="row justify-content-sm-center">
-                        <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4">
 
-                            <div class="card-body">
-                                <h2>ADD NEW USER</h2>
-                                <div class="input-group">
-                                    <span>Name</span>
-                                    <input id="name" type="text" class="form-control" name="name" placeholder="Name" required autofocus>
-                                </div>
-                                <br>
-                                <div class="input-group">
-                                    <span>Department</span>
-                                    <input id="department" type="text" class="form-control" name="department" required autofocus placeholder="Department">
-                                </div>
-                                <br>
-
-                                <div class="input-group">
-                                    <span>Email Id</span>
-                                    <input id="department" type="email" class="form-control" required autofocus name="email" placeholder="EmailId">
-                                </div>
-                                <br>
-
-
-                            <div class="input-group">
-                                <span>Number</span>
-                                <input id="number" type="text"  class="form-control"  min="10" maxlength="10" name="number" placeholder="Number" required autofocus>
-                            </div>
-
-                                <br>
-                                <div class="input-group">
-                                    <span> Extension number</span>
-                                    <input id="extensionnumber" type="text"  required autofocus class="form-control" maxlength="2" name="extensionnumber" placeholder="Extension Number">
-                                </div>
-<br>
-                                <button class="btn btn-lg btn-primary btn-block mb-1" onclick="Validate()" type="submit" >Add User</button>
-                                <label class="checkbox float-left">
-                                </label>
-
-                            </div>
+                    <div class="card-body">
+                        <h2>ADD NEW USER</h2>
+                        <div class="input-group">
+                            <span>Name</span>
+                            <input id="name" type="text" class="form-control" name="name" placeholder="Name" required>
                         </div>
+                        <br>
+                        <div class="input-group">
+                            <span>Department</span>
+                            <input id="department" type="text" class="form-control" name="department" placeholder="Department" required>
+                        </div>
+                        <br>
+
+                        <div class="input-group">
+                            <span>Email Id</span>
+                            <input id="email" type="email" class="form-control" name="email" placeholder="EmailId" required>
+                        </div>
+                        <br>
+
+
+                        <div class="input-group">
+                            <span>Number</span>
+                            <input id="number" type="text" class="form-control"  name="number" placeholder="Number" required>
+                        </div>
+
+                        <br>
+                        <div class="input-group">
+                            <span> Extension number</span>
+                            <input id="extensionnumber" type="text" class="form-control" maxlength="2" name="extensionnumber" placeholder="Extension Number" required>
+                        </div>
+                        <br>
+                        <button class="btn btn-lg btn-primary btn-block mb-1" value="submit" type="submit">Add User</button>
+                        <label class="checkbox float-left">
+                        </label>
 
                     </div>
                 </div>
+
             </div>
-        </form>
+        </div>
+    </div>
+</form>
 
 
-        </body>
-        </html>
-
-
-
+</body>
+</html>
 
