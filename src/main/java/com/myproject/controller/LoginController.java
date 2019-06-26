@@ -98,33 +98,21 @@ public class LoginController {
              if(name.equals(name)&&department.equals("")){
                  System.out.println("1111111");
                  model.addAttribute("userList", userService.findByName(name));
-                 if(!(name.equals(userService.findByName(name))))
-                 {
-                     System.out.println("1.1111111.11");
-                     return "user/Show_list1";
-                 }
+
                  return "user/user_list";}
 
              else if(name.equals("")&&department.equals(department)){
 
                  System.out.println("22222222222");
                  model.addAttribute("userList", userService.findByDepartment(department));
-                 if(!(name.equals(userService.findByDepartment(department))))
-                 {
-                     System.out.println("1.1111111.11");
-                     return "user/Show_list1";
-                 }
+
                  return "user/user_list";}
 
              else if(name.equals(name)&&department.equals(department)){
                  System.out.println("33333333");
                  model.addAttribute("userList",userService.findByName(name));
                  model.addAttribute("userList",userService.findByDepartment(department));
-                 if(!(name.equals(userService.findByDepartment(department)))&&!(department.equals(userService.findByDepartment(department))))
-                 {
-                     System.out.println("1.1111111.11");
-                     return "user/Show_list1";
-                 }
+
                  return "user/user_list";
              }
 

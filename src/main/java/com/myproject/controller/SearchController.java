@@ -32,10 +32,7 @@ public class SearchController {
             System.out.println("1111111");
 
             model.addAttribute("userList", userService.findByName(name));
-            if (name == null) {
-                System.out.println("1.2...");
-                return "user/Show_list1";
-            }
+
 
             return "user/bootstarpexample";
 
@@ -44,7 +41,7 @@ public class SearchController {
             System.out.println("22222222222");
             model.addAttribute("userList", userService.findByDepartment(department));
 
-            return "user/Show_list";
+            return "user/bootstarpexample";
         } else if (name.equals(name) && department.equals(department)) {
             System.out.println("33333333");
 
@@ -52,7 +49,7 @@ public class SearchController {
 
             return "user/bootstarpexample";
         } else
-            return "user/bootstarpexample";
+            return "user/Show_list1";
 
 
     }

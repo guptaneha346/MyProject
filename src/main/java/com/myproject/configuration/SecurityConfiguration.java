@@ -42,13 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
-                .antMatchers("/list1").permitAll()
+
                 .antMatchers("/user/**").permitAll()
 
                 .antMatchers("/user/saveUser").permitAll()
                 .antMatchers("/user/addUser/").permitAll()
                 .antMatchers("/templates/**").permitAll()
-                .antMatchers("user/Show_list").permitAll()
+
                 .antMatchers("/user/uploadcsvfile/").permitAll()
                 .antMatchers("/home/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable()
