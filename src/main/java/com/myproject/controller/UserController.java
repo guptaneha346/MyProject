@@ -1,6 +1,7 @@
 package com.myproject.controller;
 
 import com.myproject.Service.UserService;
+import com.myproject.model.Role;
 import com.myproject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

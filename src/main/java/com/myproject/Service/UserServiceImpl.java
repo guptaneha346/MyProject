@@ -1,7 +1,6 @@
 package com.myproject.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.NoClass;
 import com.myproject.model.User;
 import com.myproject.model.UserSignup;
 import com.myproject.repository.UserRepository;
@@ -12,7 +11,6 @@ import com.opencsv.CSVReaderBuilder;
 
 import org.apache.commons.io.FilenameUtils;
 
-import org.hibernate.type.YesNoType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -61,6 +59,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).get();
     }
 
+
+
     @Override
     public void saveOrUpdate(User user) {
         userRepository.save(user);
@@ -94,6 +94,7 @@ public boolean CsvRowError(){
         Role userRole = roleRepository.findByRole("ADMIN");
         userSignup.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userLoginRepository.save(userSignup);
+
     }
 
     @Override
@@ -112,9 +113,9 @@ public boolean CsvRowError(){
 
 
     @Override
-    public List<User> findByName(String name) {
+    public User findByName(String name) {
 
-        return userRepository.findByNameLike("%"+name+"%");
+        return (User) userRepository.findByNameLike("%"+name+"%");
     }
 
     @Override

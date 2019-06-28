@@ -13,6 +13,8 @@ public interface UserService {
 
     public User getUserById(long id);
 
+
+
     public void saveOrUpdate(User user);
 
     public void deleteUser(long id);
@@ -23,13 +25,15 @@ public interface UserService {
 
     boolean savDatafromuploadfile(MultipartFile file);
 
-    public List<User>  findByName(String name);
+    public User findByName(String name);
 
     public List<User>  findByDepartment(String department);
 
     public List<User>  findByNameAndDepartment(String name,String department);
-public boolean CsvRowError();
-public boolean CsvNumberError();
+
+    public boolean CsvRowError();
+
+    public boolean CsvNumberError();
 }
 
 

@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/login").permitAll()
+               .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
 
                 .antMatchers("/user/**").permitAll()
@@ -53,12 +53,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home/**").hasAuthority("ADMIN").anyRequest()
                 .authenticated().and().csrf().disable()
                 .formLogin().loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/user/list")
                 .usernameParameter("email")
                 .passwordParameter("password")
+                .defaultSuccessUrl("/user/list",true)
+
                 .and().logout().clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
                ;
     }
+
 
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
