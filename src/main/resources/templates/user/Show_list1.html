@@ -260,6 +260,7 @@ margin-left:350px;
 #heading
 {
 color:red;
+margin-left:500px;
 }
 
 </style>
@@ -317,11 +318,9 @@ $(document).ready(function(){
     <thead>
     <tr>
 
-        <th>#ID</th>
         <th>Name</th>
         <th>Department</th>
-        <th>Email Id</th>
-        <th>Phone number</th>
+        <th>Floor</th>
         <th>Extension number</th>
         <th>Update</th>
         <th>Delete</th>
@@ -330,11 +329,10 @@ $(document).ready(function(){
     <tbody>
     <tr th:each="user : ${userList}">
 
-        <td th:text="${user.id}"></td>
+
         <td th:text="${user.name}"></td>
         <td th:text="${user.department}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.number}"></td>
+        <td th:text="${user.floor}"></td>
         <td th:text="${user.extensionnumber}"></td>
         <td>
             <a class='far fa-edit' style='font-size:24px;color:skyblue' th:href="@{/user/updateUser/{id} (id=${user.id})}"></a>
@@ -351,7 +349,7 @@ $(document).ready(function(){
 
     </tbody>
 </table>
-<div id="heading">Record not match..</div>
+<div id="heading">Record not match search again..</div>
 </div>
 <!-- Edit Modal HTML -->
 <div id="addEmployeeModal" class="modal fade">

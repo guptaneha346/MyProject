@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:hidden="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -315,10 +315,10 @@ $(document).ready(function(){
     <tr>
 
 
-        <th>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        <th>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
         <th>Department</th>
-        <th>Email Id</th>
-        <th>Phone number</th>
+        <th>Phone Number</th>
+        <th>Floor</th>
         <th>Extension number</th>
 
     </tr>
@@ -329,8 +329,10 @@ $(document).ready(function(){
 
         <td th:text="${user.name}"></td>
         <td th:text="${user.department}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.number}"></td>
+       <!-- <td th:text="${user.number}" ></td>-->
+
+        <td hidden:value="${user.number}" ><a th:href="@{/emailpage}" >Click to link for PhoneNumber</a></td>
+        <td th:text="${user.floor}"></td>
         <td th:text="${user.extensionnumber}"></td>
 
     </tr>

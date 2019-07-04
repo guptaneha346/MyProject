@@ -27,6 +27,7 @@ public class UserController {
 
         List<User> userList = userService.getAllDetails();
 
+
         model.addObject("userList", userList);
 
         model.setViewName("user/bootstarpexample");

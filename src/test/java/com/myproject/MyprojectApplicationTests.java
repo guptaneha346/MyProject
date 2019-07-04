@@ -2,6 +2,7 @@ package com.myproject;
 
 import com.myproject.Service.UserService;
 import com.myproject.controller.LoginController;
+import com.myproject.controller.UserController;
 import com.myproject.model.User;
 import com.myproject.repository.UserRepository;
 import org.junit.*;
@@ -9,16 +10,13 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder.webAppContextSetup;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+import java.io.InputStream;
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -28,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 public class MyprojectApplicationTests {
 
+   
     @Autowired
     private WebApplicationContext wac;
 
@@ -39,6 +38,9 @@ public class MyprojectApplicationTests {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserController userController;
 
     private MockMvc mockMvc;
 
@@ -68,7 +70,8 @@ public class MyprojectApplicationTests {
         this.mockMvc.perform(get("/signup"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user/signup"))
-                .andDo(print());
+                .andDo(print())
+        ;
     }
 
     @Test
@@ -83,16 +86,29 @@ public class MyprojectApplicationTests {
     public void saveOrUpdate()
 {
     User user=new User();
-    userRepository.save(user);
+user.setName("neha12");
+user.setDepartment("java");
+
+user.setNumber(123456);
+user.setExtensionnumber(12);
+User save= userRepository.save(user);
+
+assertTrue("This will succeed.", true);
 }
+
+
+
+
     @Test
     public void findById()
 {
+
     User user=new User();
     user.setId(48);
-    userRepository.findById(user.getId());
+    assertEquals(48, user.getId());
 
 }
+
 
 }
 

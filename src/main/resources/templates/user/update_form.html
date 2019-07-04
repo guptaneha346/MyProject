@@ -47,20 +47,16 @@
                             <span>Department</span>
                             <input id="department" type="text"  th:value="${user.department}" class="form-control" name="department" placeholder="Department">
                         </div>
-                        <br><br><br>
 
-                        <div class="input-group">
-                            <div th:each = "user: ${userForm}" >
-                            <span>Email Id</span>
-                            <input id="department" type="email" th:value="${user.email}" class="form-control" name="email" placeholder="EmailId">
-                        </div>
+
+
                         <br>
                             <br><br>
 
                         <div class="input-group">
                             <div th:each = "user: ${userForm}" >
-                            <span>Number</span>
-                            <input id="number" type="text" th:value="${user.number}" class="form-control" name="number" placeholder="Number">
+                            <span>Floor</span>
+                            <input id="floor" type="text" th:value="${user.floor}" class="form-control" name="floor" placeholder="Floor">
                         </div>
 
                         <br><br><br>

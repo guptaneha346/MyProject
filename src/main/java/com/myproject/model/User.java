@@ -30,6 +30,9 @@ public class User {
     @Column(name="Email")
     private String email;
 
+    @Column(name="Floor")
+    private String floor;
+
     @Column(name="filetype")
     private String filetype;
 
@@ -37,21 +40,21 @@ public class User {
     private MultipartFile file;
 
     public  User(){}
-    public User(String name,String department,String email,int number,int extensionnumber) {
+    public User(String name,String department,String floor,int extensionnumber) {
         this.name = name;
         this.department=department;
-        this.number=number;
+        this.floor=floor;
         this.extensionnumber=extensionnumber;
-        this.email=email;
+
     }
 
 
-    public User(String name,String department,String email,int number,int extensionnumber,String filetype) {
+    public User(String name,String department,String floor,int extensionnumber,String filetype) {
         this.name = name;
         this.department=department;
-        this.number=number;
+        this.floor=floor;
         this.extensionnumber=extensionnumber;
-        this.email=email;
+
         this.filetype=filetype;
 
     }
@@ -62,6 +65,14 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -79,7 +90,13 @@ public class User {
         this.department = department;
     }
 
+    public String getFloor() {
+        return floor;
+    }
 
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
 
     public int getNumber() {
         return number;
@@ -105,13 +122,7 @@ public class User {
         this.file = file;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public int getExtensionnumber() {
         return extensionnumber;
@@ -120,6 +131,7 @@ public class User {
     public void setExtensionnumber(int extensionnumber) {
         this.extensionnumber = extensionnumber;
     }
+
 
     @Override
     public String toString() {
@@ -130,11 +142,10 @@ public class User {
                 ", number=" + number +
                 ", extensionnumber=" + extensionnumber +
                 ", email='" + email + '\'' +
+                ", floor='" + floor + '\'' +
                 ", filetype='" + filetype + '\'' +
                 ", file=" + file +
                 '}';
     }
-
-
 }
 

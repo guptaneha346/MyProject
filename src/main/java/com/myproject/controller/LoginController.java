@@ -27,7 +27,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value= {"/"}, method=RequestMethod.GET)
+    @RequestMapping(value= {"/"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
 
@@ -98,22 +98,44 @@ public class LoginController {
              if(name.equals(name)&&department.equals("")){
                  System.out.println("1111111");
                  model.addAttribute("userList", userService.findByName(name));
-
+                 if(userService.findByName(name).isEmpty())
+                 {
+                     System.out.println("not match record");
+                     return "user/Show_list2";
+                 }
                  return "user/user_list";}
 
              else if(name.equals("")&&department.equals(department)){
 
                  System.out.println("22222222222");
                  model.addAttribute("userList", userService.findByDepartment(department));
-
+                 if(userService.findByDepartment(department).isEmpty())
+                 {
+                     System.out.println("not match record");
+                     return "user/Show_list2";
+                 }
                  return "user/user_list";}
 
              else if(name.equals(name)&&department.equals(department)){
                  System.out.println("33333333");
-                 model.addAttribute("userList",userService.findByName(name));
-                 model.addAttribute("userList",userService.findByDepartment(department));
+                 model.addAttribute("userList", userService.findByName(name));
+                 model.addAttribute("userList", userService.findByDepartment(department));
+                 if(userService.findByName(name).isEmpty())
+                 {
+                     System.out.println("not match record");
+                     return "user/Show_list2";
+                 }
+               if( userService.findByDepartment(department).isEmpty())
+               {
+                   return "user/Show_list2";
+               }
+               if (!(userService.findByName(name)).equals(userService.findByDepartment(department)))
+               {
+                   System.out.println("both are not match");
+                   return "user/Show_list2";
+               }
 
-                 return "user/user_list";
+                   return "user/user_list";
              }
 
 

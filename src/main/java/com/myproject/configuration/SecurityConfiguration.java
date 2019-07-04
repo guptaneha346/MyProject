@@ -40,9 +40,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-               .antMatchers("/login").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
-
+.antMatchers("user/user_list").permitAll()
                 .antMatchers("/user/**").permitAll()
 
                 .antMatchers("/user/saveUser").permitAll()
@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/user/list",true)
 
                 .and().logout().clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-               ;
+        ;
     }
 
 
@@ -68,7 +68,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         db.setDataSource(dataSource);
 
         return db;
-    }
-}
-
-
+    }    }

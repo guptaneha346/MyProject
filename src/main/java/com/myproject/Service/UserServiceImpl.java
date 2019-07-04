@@ -62,8 +62,9 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void saveOrUpdate(User user) {
+    public String saveOrUpdate(User user) {
         userRepository.save(user);
+        return null;
     }
 
     @Override
@@ -113,9 +114,9 @@ public boolean CsvRowError(){
 
 
     @Override
-    public User findByName(String name) {
+    public List<User> findByName(String name) {
 
-        return (User) userRepository.findByNameLike("%"+name+"%");
+        return userRepository.findByNameLike("%"+name+"%");
     }
 
     @Override
@@ -160,29 +161,12 @@ public boolean CsvRowError(){
             List<String[]> rows = csvReader.readAll();
     String header="name,department,email,number,extensionnumber";
     if(rows.isEmpty()) {
+        System.out.println("row");
       return false; }
     for (String[] row : rows) {
-        if(row[0].isEmpty()||row[1].isEmpty()||row[2].isEmpty()||row[3].isEmpty()||row[4].isEmpty()){
-            System.out.println("row check");
-            return false;
-        }
-        else  if(!(row[2]).matches(EMAIL)){
 
-            System.out.println("email error");
-            return false;
-        }
-       else if(row[4].length()<2||row[4].length()>2)
-        {
-            System.out.println("extensionnumber error");
-            return false;
+        userRepository.save(new User(row[0], row[1], row[2],  Integer.parseInt(row[3]), FilenameUtils.getExtension(file.getOriginalFilename())));
 
-        }
-       else if(row[3].length()<10||row[3].length()>10)
-        {
-            System.out.println("number error");
-            return userService.CsvNumberError(); }
-
-       userRepository.save(new User(row[0], row[1], row[2], Integer.parseInt(row[3]), Integer.parseInt(row[4]), FilenameUtils.getExtension(file.getOriginalFilename())));
     }
 
     return true;
