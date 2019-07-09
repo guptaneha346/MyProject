@@ -21,7 +21,12 @@ public interface UserService {
 
     public UserSignup findUserByEmail(String email);
 
+
+
+
     public void saveUser(UserSignup user);
+
+
 
     boolean savDatafromuploadfile(MultipartFile file);
 

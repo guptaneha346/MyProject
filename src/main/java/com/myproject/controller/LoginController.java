@@ -27,6 +27,7 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value= {"/"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
@@ -74,6 +75,7 @@ public class LoginController {
             userService.saveUser(user);
             model.addObject("msg", "User has been registered successfully!");
             model.addObject("user", new UserSignup());
+
             model.setViewName("user/login");
         }
 
@@ -116,10 +118,9 @@ public class LoginController {
                  }
                  return "user/user_list";}
 
-             else if(name.equals(name)&&department.equals(department)){
+             else if(name.equals(name) && department.equals(department)){
                  System.out.println("33333333");
-                 model.addAttribute("userList", userService.findByName(name));
-                 model.addAttribute("userList", userService.findByDepartment(department));
+
                  if(userService.findByName(name).isEmpty())
                  {
                      System.out.println("not match record");
@@ -133,6 +134,11 @@ public class LoginController {
                {
                    System.out.println("both are not match");
                    return "user/Show_list2";
+               }
+               else {
+                   model.addAttribute("userList", userService.findByDepartment(department));
+                   model.addAttribute("userList", userService.findByName(name) );
+
                }
 
                    return "user/user_list";

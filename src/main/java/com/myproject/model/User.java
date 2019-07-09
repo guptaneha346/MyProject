@@ -1,11 +1,12 @@
 package com.myproject.model;
 
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
-
+@Component
 @Entity
 @Table(name="user")
 public class User {
@@ -26,6 +27,8 @@ public class User {
     @Column(name="Extensionnumber")
     private int extensionnumber;
 
+    @Column(name="message")
+    private String message;
 
     @Column(name="Email")
     private String email;
@@ -58,6 +61,19 @@ public class User {
         this.filetype=filetype;
 
     }
+    public User(String name,String department,String email,String floor,int extensionnumber,String filetype) {
+        this.name = name;
+        this.department=department;
+        this.floor=floor;
+        this.extensionnumber=extensionnumber;
+
+        this.filetype=filetype;
+
+    }
+    public User(String email)
+    {
+        this.email=email;
+    }
 
     public long getId() {
         return id;
@@ -65,6 +81,14 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getEmail() {
@@ -132,7 +156,6 @@ public class User {
         this.extensionnumber = extensionnumber;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -141,6 +164,7 @@ public class User {
                 ", department='" + department + '\'' +
                 ", number=" + number +
                 ", extensionnumber=" + extensionnumber +
+                ", message='" + message + '\'' +
                 ", email='" + email + '\'' +
                 ", floor='" + floor + '\'' +
                 ", filetype='" + filetype + '\'' +

@@ -1,18 +1,96 @@
-<!DOCTYPE html>
-<title>Feedback Form</title>
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<h1>Email Request For Phone </h1>
-<form method="post" action="send_mail.php">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+                .img
+                {
+                 height:90px;
 
-    <p>
-        <label>Email
-            <input type="email" name="email_address">
-        </label>
-    </p>
-    <p>
-        <label>Comments
-            <textarea name="comments" maxlength="500"></textarea>
-        </label>
-    </p>
-    <p><button>Submit</button></p>
+                 width:90px;
+                }
+            </style>
+    <title>Message Box</title>
+</head>
+<body>
+<img src="https://media.licdn.com/dms/image/C4E0BAQErzHJr7lA-uQ/company-logo_200_200/0?e=2159024400&v=beta&t=SNMUVGNKZompTKxWPdbrZt-Z0lleQ6y4nJ2MqfRs7jI" class="img">
+<div class="container">
+
+<form class="form-horizontal" th:object="${userEmail}"  th:action="@{/send-mail}" method="post" >
+    <input type="hidden" th:field="*{id}" />
+    <div class="row justify-content-sm-center">
+        <div class="container pt-3">
+            <div class="row justify-content-sm-center">
+                <div class="col-sm-6 col-md-4">
+
+                    <div class="card-body">
+                        <h2>Send Email Requset</h2>
+                        <div class="input-group">
+                            <div th:each = "user: ${userEmail}" >
+                                <span>Email</span>
+                                <input id="email" type="email" required th:value="${user.email}" class="form-control" name="email" placeholder="email">
+                            </div>
+                            <br><br><br>
+                            <div class="input-group">
+                                <div th:each = "user: ${userEmail}" >
+                                    <p>Message:</p>
+                                    <p><textarea cols="50" rows="10" id="message" name="message" required></textarea></p>
+                                </div>
+
+
+
+
+                                <br><br><br>
+                                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit"  id="submit">Send</button>
+                                <label class="checkbox float-left">
+                                </label>
+                            </div></div></div></div></div></div></div>
+
 </form>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+    $("#submit").click(function(){
+    var email=$("#email").val();
+    var message=$("#message").val();
+
+
+
+    if(email == "" || message == ""){
+   swal({
+  title: "Fields Emty!",
+  text: "please check the missing field!",
+  icon: "warning",
+   button: "ok",
+});
+
+    }
+    else
+    {
+      swal({
+  title: "Email Send!",
+  text: "Successfully!",
+  icon: "success",
+
+
+});
+
+    }
+    })
+</script>
+
+
+</script>
+</body>
+</html>

@@ -317,6 +317,7 @@ $(document).ready(function(){
 
         <th>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
         <th>Department</th>
+        <th>Email</th>
         <th>Phone Number</th>
         <th>Floor</th>
         <th>Extension number</th>
@@ -330,8 +331,8 @@ $(document).ready(function(){
         <td th:text="${user.name}"></td>
         <td th:text="${user.department}"></td>
        <!-- <td th:text="${user.number}" ></td>-->
-
-        <td hidden:value="${user.number}" ><a th:href="@{/emailpage}" >Click to link for PhoneNumber</a></td>
+        <td th:text="${user.email}"></td>
+        <td hidden:value="${user.number}" ><a th:href="@{/Email-page/{id} (id=${user.id})}" >Click to link for PhoneNumber</a></td>
         <td th:text="${user.floor}"></td>
         <td th:text="${user.extensionnumber}"></td>
 
