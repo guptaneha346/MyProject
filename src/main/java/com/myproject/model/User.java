@@ -39,6 +39,11 @@ public class User {
     @Column(name="filetype")
     private String filetype;
 
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="employeesignup")
+
+
     @Transient
     private MultipartFile file;
 

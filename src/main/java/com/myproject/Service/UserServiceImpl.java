@@ -1,11 +1,9 @@
 package com.myproject.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myproject.model.User;
-import com.myproject.model.UserSignup;
-import com.myproject.repository.UserRepository;
+import com.myproject.model.*;
+import com.myproject.repository.*;
 
-import com.myproject.repository.UserLoginRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 
@@ -17,13 +15,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.myproject.repository.RoleRepository;
 
 import java.io.*;
 import java.util.*;
 import javax.transaction.Transactional;
 
-import com.myproject.model.Role;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service("userService")
@@ -43,8 +39,18 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserLoginRepository userLoginRepository;
 
+
+    @Qualifier("EmployeeRepository")
+    @Autowired
+    private EmployeeLoginRepository employeeLoginRepository;
+
+
+
     @Autowired
     private RoleRepository roleRepository;
+
+
+
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -78,8 +84,16 @@ public class UserServiceImpl implements UserService {
         return userLoginRepository.findByEmail(email);
     }
 
+    @Override
+    public EmployeeSignup findEmployeeByEmail(String email) {
+        return employeeLoginRepository.findByEmail(email);
+    }
 
-
+    @Override
+    public boolean isUserAlreadyPresent(UserSignup user) {
+        // Try to implement this method, as assignment.
+        return false;
+    }
 
     @Override
 public boolean CsvRowError(){
@@ -96,12 +110,29 @@ public boolean CsvRowError(){
     public void saveUser(UserSignup userSignup) {
         userSignup.setPassword(bCryptPasswordEncoder.encode(userSignup.getPassword()));
         userSignup.setActive(1);
+
         Role userRole = roleRepository.findByRole("ADMIN");
+
         userSignup.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+
         userLoginRepository.save(userSignup);
+
 
     }
 
+    @Override
+    public void saveEmployee(EmployeeSignup employeeSignup) {
+        employeeSignup.setPassword(bCryptPasswordEncoder.encode(employeeSignup.getPassword()));
+        employeeSignup.setActive(2);
+
+        Role userRole = roleRepository.findByRole("USER");
+
+        employeeSignup.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+
+        employeeLoginRepository.save(employeeSignup);
+
+
+    }
 
 
 

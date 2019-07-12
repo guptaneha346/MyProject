@@ -285,6 +285,7 @@ $(document).ready(function(){
 	});
 });
 </script>
+
 </head>
 <body>
 
@@ -298,12 +299,12 @@ $(document).ready(function(){
             <div class="row">
 
                 <div>
-                    <form action="/search"  class="from-inline">
+                    <form action="/search"   class="from-inline">
                         <input type="text" class="searchboxname"  name="name" placeholder="search user ">
                         <input type="text" class="searchboxname1"    name="department" placeholder="Department Name">
                         <input type="submit" value="search" id="button1" class="btn btn-primary">
-                        <a class="btn btn-primary" th:href="@{/login}" role="button" align="center" ><span class="button1">Admin Login</span></a>
-
+                        <a class="btn btn-primary" th:href="@{/login}" role="button" align="center" ><span class="button1">Login</span></a>
+                        <a class="btn btn-primary" th:href="@{/employeeregister}" role="button" align="center" ><span class="button1">Employee Registration</span></a>
 
 
                     </form>
@@ -317,8 +318,8 @@ $(document).ready(function(){
 
         <th>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
         <th>Department</th>
-        <th>Email</th>
-        <th>Phone Number</th>
+
+
         <th>Floor</th>
         <th>Extension number</th>
 
@@ -331,8 +332,8 @@ $(document).ready(function(){
         <td th:text="${user.name}"></td>
         <td th:text="${user.department}"></td>
        <!-- <td th:text="${user.number}" ></td>-->
-        <td th:text="${user.email}"></td>
-        <td hidden:value="${user.number}" ><a th:href="@{/Email-page/{id} (id=${user.id})}" >Click to link for PhoneNumber</a></td>
+
+
         <td th:text="${user.floor}"></td>
         <td th:text="${user.extensionnumber}"></td>
 

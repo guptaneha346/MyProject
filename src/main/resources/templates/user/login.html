@@ -29,7 +29,7 @@
     <div class="alert alert-danger" role="alert" th:if="${param.error}">
         The email or password is incorrect!
     </div>
-    <form th:action="@{/login}" method="post" >
+    <form th:action="@{/login1}" method="post" >
         <div class="row justify-content-sm-center">
             <div class="container pt-3">
                 <div class="row justify-content-sm-center">
@@ -54,7 +54,8 @@
                             <br>
 
                             <input type="checkbox" value="remember-me">
-                            Remember me
+                            Remember me &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a  th:href="@{/employeeregister}"  align="center" ><span>If you not Registred</span></a>
                             <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Login</button>
 
                             <label class="checkbox float-left">

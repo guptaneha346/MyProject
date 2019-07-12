@@ -151,16 +151,7 @@ public class LoginController {
 
          }
 
-         @RequestMapping(value= {"/home"}, method=RequestMethod.GET)
-    public ModelAndView home() {
-        ModelAndView model = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserSignup user = userService.findUserByEmail(auth.getName());
 
-        model.addObject("userName", user.getFirstname() + " " + user.getLastname());
-        model.setViewName("/user/list");
-        return model;
-    }
 
     @RequestMapping(value= {"/access_denied"}, method=RequestMethod.GET)
     public ModelAndView accessDenied() {

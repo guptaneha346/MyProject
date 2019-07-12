@@ -1,5 +1,6 @@
 package com.myproject.Service;
 
+import com.myproject.model.EmployeeSignup;
 import com.myproject.model.User;
 
 import com.myproject.model.UserSignup;
@@ -21,12 +22,14 @@ public interface UserService {
 
     public UserSignup findUserByEmail(String email);
 
-
+    public EmployeeSignup findEmployeeByEmail(String email);
 
 
     public void saveUser(UserSignup user);
 
+    public void saveEmployee(EmployeeSignup user);
 
+    public boolean isUserAlreadyPresent(UserSignup user);
 
     boolean savDatafromuploadfile(MultipartFile file);
 

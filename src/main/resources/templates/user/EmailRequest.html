@@ -32,10 +32,15 @@
                         <h2>Send Email Requset</h2>
                         <div class="input-group">
                             <div th:each = "user: ${userEmail}" >
-                                <span>Email</span>
+                                <span>Email </span>
                                 <input id="email" type="email" required th:value="${user.email}" class="form-control" name="email" placeholder="email">
                             </div>
                             <br><br><br>
+
+
+
+
+
                             <div class="input-group">
                                 <div th:each = "user: ${userEmail}" >
                                     <p>Message:</p>
@@ -46,7 +51,7 @@
 
 
                                 <br><br><br>
-                                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit"  id="submit">Send</button>
+                                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" onclick="return function();"  id="submit">Send</button>
                                 <label class="checkbox float-left">
                                 </label>
                             </div></div></div></div></div></div></div>
@@ -62,6 +67,7 @@
 <script>
 
     $("#submit").click(function(){
+
     var email=$("#email").val();
     var message=$("#message").val();
 
@@ -74,10 +80,11 @@
   icon: "warning",
    button: "ok",
 });
-
+return false;
     }
     else
     {
+
       swal({
   title: "Email Send!",
   text: "Successfully!",
@@ -85,12 +92,12 @@
 
 
 });
-
+return true;
     }
+
+
     })
 </script>
 
-
-</script>
 </body>
 </html>
