@@ -25,7 +25,8 @@ public class EmailController {
     private MailService notificationService;
 
 
-
+@Autowired
+EmployeeSignup employeeSignup;
 
 @Autowired
 User user;
@@ -47,10 +48,11 @@ User user;
     public ModelAndView send1(@ModelAttribute("userEmail") User email, ModelMap modelMap) {
 
         email.setEmail(email.getEmail());
-
+      employeeSignup.setEmail(employeeSignup.getEmail());
         email.setMessage(email.getMessage());
 
         System.out.println(email);
+        System.out.println(employeeSignup);
 
         try {
             notificationService.sendEmail(email);

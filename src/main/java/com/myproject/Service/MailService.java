@@ -30,7 +30,8 @@ public class MailService {
         this.javaMailSender = javaMailSender;
     }
 
-
+@Autowired
+EmployeeSignup employeeSignup;
 
     public void sendEmail(User user) throws MailException, MessagingException {
 
@@ -39,7 +40,7 @@ public class MailService {
 MimeMessage mimeMessage=javaMailSender.createMimeMessage();
 MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,true);
         mimeMessageHelper.setTo(user.getEmail());
-
+        mimeMessage.setFrom("ng87311@gmail.com");
         mimeMessageHelper.setText(user.getMessage());
 
 

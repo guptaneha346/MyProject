@@ -24,7 +24,7 @@ public class EmployeeSignup {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "email")
+    @Column(name = "employeeemail")
     private String email;
 
     @Column(name = "firstname")
